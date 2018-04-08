@@ -1,5 +1,6 @@
 # 7dtd_discordBot
-7dtd, discord, bot, 7 days to die
+  * Start/Stop 7dtd instances. ( Discord Bot )
+  * Send message when instances' state changed. ( Discord WebHook )
 
 ## Install
   * Install Python3  
@@ -36,7 +37,5 @@ admin_list=('<admin_id>',)
 In **discord_hook.py**, edit with your settings:
 ```
 webhook_url = 'https://discordapp.com/api/webhooks/id/token'
-hostname = 'server ip'
-port = 26700
-servername = 'server name'
+server_ip = '127.0.0.1'
 ```
