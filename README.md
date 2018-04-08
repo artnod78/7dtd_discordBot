@@ -10,7 +10,7 @@
   * Download discord_bot.py  
   `wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/discord_bot.py`  
   Set as executable `chmod +x discord_bot.py`
-  * Download discord_hook.py  
+  * Download discord_hooks.py  
   `wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/discord_hooks.py`  
   Set as executable `chmod +x discord_hooks.py`
 
@@ -34,7 +34,7 @@ bot_token = '<bot_token>'
 admin_list=('<admin_id>',)
 ```  
 
-In **discord_hook.py**, edit with your settings:
+In **discord_hooks.py**, edit with your settings:
 ```
 webhook_url = 'https://discordapp.com/api/webhooks/id/token'
 server_ip = '127.0.0.1'
