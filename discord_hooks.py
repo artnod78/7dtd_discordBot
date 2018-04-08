@@ -4,12 +4,12 @@ import time
 import datetime
 from collections import defaultdict
 import socket
+import os
+from lxml import etree
+
 
 webhook_url = 'https://discordapp.com/api/webhooks/id/token'
-
-hostname = 'server ip'
-port = 26700
-servername = 'server name'
+server_ip = '127.0.0.1'
 
 class Webhook:
 	def __init__(self, url, **kwargs):
@@ -139,37 +139,80 @@ class Webhook:
 			print("Code : "+str(result.status_code))
 			time.sleep(2)
 
-def gameState(hostname, port ):
-	isRunning = False
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	result = sock.connect_ex((hostname, port))
-	if result == 0:
-		isRunning = True
-	return isRunning;
+class sdtdHook:
+	def __init__(self, hostname, port, servername, webhook_url):
+		
+		"""
+		Initialise a sdtdInstance Webhook
+		"""
+		
+		self.hostname = hostname
+		self.port = port
+		self.servername = servername
+		self.webhook_url = webhook_url
+		self.lastState = False
+	
+	def isRunning(self):
+		
+		"""
+		Check if Port is open
+		"""
+		
+		self.running = False
+		sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		result = sock.connect_ex((self.hostname, self.port))
+		if result == 0:
+				self.running = True
+	
+	def sendState(self):
+		
+		"""
+		Send instance state
+		"""
+		
+		status = ''
+		embed = Webhook(self.webhook_url, color=123123)
+		if self.running == True:
+			status = 'disponible'
+			embed.set_author(name='Norbert le Robot', icon='http://www.emoji.co.uk/files/apple-emojis/smileys-people-ios/78-robot-face.png')
+			embed.set_desc('Le serveur **' + self.servername + '** est ' + status + '!')
+			embed.add_field(name='Hostname',value=self.hostname)
+			embed.add_field(name='Port',value=self.port)
+			embed.set_thumbnail('https://i.pinimg.com/originals/23/4a/6b/234a6b9a897c7e963bf73ef073b94842.jpg')
+			embed.set_footer(text='Bon jeu',icon='http://www.4forcesclan.com/images/7dlogo.png',ts=True)
+		else:
+			status = 'eteins'
+			embed.set_author(name='Norbert le Robot', icon='http://www.emoji.co.uk/files/apple-emojis/smileys-people-ios/78-robot-face.png')
+			embed.set_desc('Le serveur **' + self.servername + '** est ' + status + '!')
+			embed.set_thumbnail('http://www.clker.com/cliparts/4/4/1/a/1195429270821624493molumen_multicolor_power_buttons_4.svg.hi.png')
+			embed.set_footer(text='A bientot',icon='http://www.4forcesclan.com/images/7dlogo.png',ts=True)
+		embed.post()
+	
+	def process(self):
+		
+		"""
+		If instance status change
+		Then send instance new state
+		"""
+		
+		self.isRunning()
+		if self.running != self.lastState:
+			self.sendState()
+			self.lastState = self.running
 
-def sendState(isRunning, serverName, hostName, port):
-	status = ''
-	embed = Webhook(webhook_url, color=123123)
-	if isRunning == True:
-		status = 'disponible'
-		embed.set_author(name='Norbert le Robot', icon='http://www.emoji.co.uk/files/apple-emojis/smileys-people-ios/78-robot-face.png')
-		embed.set_desc('Le serveur **' + serverName + '** est ' + status + '!')
-		embed.add_field(name='Hostname',value=hostName)
-		embed.add_field(name='Port',value=port)
-		embed.set_thumbnail('https://i.pinimg.com/originals/23/4a/6b/234a6b9a897c7e963bf73ef073b94842.jpg')
-		embed.set_footer(text='Bon jeu',icon='http://www.4forcesclan.com/images/7dlogo.png',ts=True)
-	else:
-		status = 'eteins'
-		embed.set_author(name='Norbert le Robot', icon='http://www.emoji.co.uk/files/apple-emojis/smileys-people-ios/78-robot-face.png')
-		embed.set_desc('Le serveur **' + serverName + '** est ' + status + '!')
-		embed.set_thumbnail('http://www.clker.com/cliparts/4/4/1/a/1195429270821624493molumen_multicolor_power_buttons_4.svg.hi.png')
-		embed.set_footer(text='A bientot',icon='http://www.4forcesclan.com/images/7dlogo.png',ts=True)
-	embed.post()
-
-lastState = False
+# Get instances list (ServerName and Port) 
+instances = []
+for instance in os.listdir('/home/sdtd/instances'):
+	doc = etree.parse('/home/sdtd/instances/{}/config.xml'.format(instance))
+	root = doc.getroot()
+	for child in root:
+		if child.attrib['name'] == 'ServerName':
+			servername = child.attrib['value']
+		if child.attrib['name'] == 'ServerPort':
+			port = int(child.attrib['value'])
+	instances.append(sdtdHook(server_ip, port, servername, webhook_url))
 while True:
-	currentState = gameState(hostname, port)
-	if currentState != lastState:
-		sendState(currentState, servername, hostname, port)
-		lastState = currentState
-	time.sleep(3)
+	for instance in instances:
+		# Send message if server state changes
+		instance.process()
+	time.sleep(10)
