@@ -10,8 +10,8 @@
   `wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/discord_bot.py`  
   Set as executable `chmod +x discord_bot.py`
   * Download discord_hook.py  
-  `wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/discord_hook.py`  
-  Set as executable `chmod +x discord_hook.py`
+  `wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/discord_hooks.py`  
+  Set as executable `chmod +x discord_hooks.py`
 
 ## Create Bot
   * Go to: https://discordapp.com/developers/applications/me
