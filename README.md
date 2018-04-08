@@ -5,7 +5,7 @@
   * Install Python3  
   `apt-get install python3 python3-pip`
   * Install discord.py  
-  `pip install discord`
+  `pip3 install discord`
   * Download discord_bot.py  
   `wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/discord_bot.py`  
   Set as executable `chmod +x discord_bot.py`
