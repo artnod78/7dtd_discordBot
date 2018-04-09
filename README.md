@@ -57,8 +57,8 @@ channel id = 328301020429018971
 
 ### Get User Id
   * Go on your discord server
-  * User Settings > Appearance > Enable Developer Mode > Done
-  * Find user on the right side in the User panel > Right click > Copy ID  
+  * **User Settings** > **Appearance** > **Enable Developer Mode** > Done
+  * Find user on the right side in the User panel > Right click > **Copy ID**  
 
 ### Configuration
 In **discord_bot.py**, edit with your settings:
