@@ -7,13 +7,13 @@ Features:
 
 This wiki will guide you through the setup and usage of the tool set.  
 [wiki](https://github.com/artnod78/7dtd_discordBot/wiki)
-## Installation
+## Install
 ```
 wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/bootstrap/bootstrap.sh
 chmod +x bootstrap.sh
 ./bootstrap.sh -i
 ```
-## Configuration
+## Config
 Edit `/usr/local/bin/sdtdbot/discord_bot.py` with your settings:
 ```
 bot_token = '<token>'
