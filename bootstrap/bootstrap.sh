@@ -105,7 +105,7 @@ installBotScripts() {
 	chown root.root /usr/local/bin/sdtdbot/discord_bot.py
 	chmod 0777 /usr/local/bin/sdtdbot/discord_bot.py
 	chown root.root /etc/init.d/discord_bot
-	chmod 0777/etc/init.d/discord_bot
+	chmod 0777 /etc/init.d/discord_bot
 	
 	chown root.root /usr/local/bin/sdtdbot/discord_hook.py
 	chmod 0777 /usr/local/bin/sdtdbot/discord_hook.py
