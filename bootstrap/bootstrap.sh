@@ -102,9 +102,8 @@ installBotScripts() {
 	unzip -q /tmp/DiscordBot.zip -d $TMPPATH
 	cp -R $TMPPATH/7dtd_discordBot-master/scripts/* /
 
-	chmod 775 /usr/local/bin/sdtdbot/discord_bot.py
+	chmod 775 -R /usr/local/bin/sdtdbot
 	chmod 775 /etc/init.d/discord_bot	
-	chmod 775 /usr/local/bin/sdtdbot/discord_hook.py
 	chmod 775 /etc/init.d/discord_hook
 
 	rm -R $TMPPATH
