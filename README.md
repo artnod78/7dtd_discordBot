@@ -6,7 +6,7 @@ Features:
   * Send message when instances' state changed. ( Discord WebHook )  
 
 This wiki will guide you through the setup and usage of the tool set.  
-[wiki](https://github.com/artnod78/KSP-DMP-Manager/wiki)
+[[wiki]]
 ## Installation
 ```
 wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/bootstrap/bootstrap.sh
