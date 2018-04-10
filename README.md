@@ -3,8 +3,9 @@ Simple Bot/Webhook for 7dtd Linux management scripts.
 Required 7dtd Linux management scripts availible on https://7dtd.illy.bz/  
 Features:
   * Start/Stop 7dtd instances. ( Discord Bot )
-  * Send message when instances' state changed. ( Discord WebHook )
-
+  * Send message when instances' state changed. ( Discord WebHook )  
+This wiki will guide you through the setup and usage of the tool set.  
+[wiki](https://github.com/artnod78/KSP-DMP-Manager/wiki)
 ## Install from Bootstrap
 ```
 wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/bootstrap/bootstrap.sh
