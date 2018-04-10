@@ -102,23 +102,21 @@ installBotScripts() {
 	unzip -q /tmp/DiscordBot.zip -d $TMPPATH
 	cp -R $TMPPATH/7dtd_discordBot-master/scripts/* /
 
-	chown root.root /usr/local/bin/sdtdbot/discord_bot.py
-	chmod 0777 /usr/local/bin/sdtdbot/discord_bot.py
-	chown root.root /etc/init.d/discord_bot
-	chmod 0777 /etc/init.d/discord_bot
-	
-	chown root.root /usr/local/bin/sdtdbot/discord_hook.py
-	chmod 0777 /usr/local/bin/sdtdbot/discord_hook.py
-	chown root.root /etc/init.d/discord_hook
-	chmod 0777 /etc/init.d/discord_hook
+	chmod 775 /usr/local/bin/sdtdbot/discord_bot.py
+	chmod 775 /etc/init.d/discord_bot	
+	chmod 775 /usr/local/bin/sdtdbot/discord_hook.py
+	chmod 775 /etc/init.d/discord_hook
 
 	rm -R $TMPPATH
 	rm /tmp/DiscordBot.zip
 
 	echo "  - Enable deamon"
+	update-rc.d -f discord_bot remove
+	update-rc.d -f discord_hook remove
 	systemctl daemon-reload
 	update-rc.d discord_bot defaults
 	update-rc.d discord_hook defaults
+	systemctl daemon-reload
 	echo -e "\n=============================================================\n"
 }
 
