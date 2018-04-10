@@ -7,7 +7,7 @@ Features:
 
 This wiki will guide you through the setup and usage of the tool set.  
 [wiki](https://github.com/artnod78/KSP-DMP-Manager/wiki)
-## Install from Bootstrap
+## Installation
 ```
 wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/bootstrap/bootstrap.sh
 chmod +x bootstrap.sh
