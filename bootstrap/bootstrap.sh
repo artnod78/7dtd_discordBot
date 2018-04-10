@@ -89,6 +89,7 @@ check7dtdDeps() {
 		echo "7dtd Linux management script not installed."
 		echo "Please install it (https://7dtd.illy.bz/)"
 		exit 1
+	fi
 }
 
 installBotScripts() {
@@ -101,13 +102,13 @@ installBotScripts() {
 	unzip -q /tmp/DiscordBot.zip -d $TMPPATH
 	cp -R $TMPPATH/7dtd_discordBot-master/scripts/* /
 
-	chown root.root /usr/local/bin/discord_bot.py
-	chmod 0755 /usr/local/bin/discord_bot.py
+	chown root.root /usr/local/bin/sdtdbot/discord_bot.py
+	chmod 0755 /usr/local/bin/sdtdbot/discord_bot.py
 	chown root.root /etc/init.d/discord_bot
 	chmod 0755 /etc/init.d/discord_bot
 	
-	chown root.root /usr/local/bin/discord_hook.py
-	chmod 0755 /usr/local/bin/discord_hook.py
+	chown root.root /usr/local/bin/sdtdbot/discord_hook.py
+	chmod 0755 /usr/local/bin/sdtdbot/discord_hook.py
 	chown root.root /etc/init.d/discord_hook
 	chmod 0755 /etc/init.d/discord_hook
 
@@ -144,13 +145,13 @@ finish() {
 main() {
 	intro
 	nonDebianWarning
+	check7dtdDeps
 	if [ $ISDEBIAN -eq 1 ]; then
 		installAptDeps
 		installPipDeps
 	else
 		checkSetupDeps
 	fi
-	check7dtdDeps
 	installBotScripts
 	finish
 }

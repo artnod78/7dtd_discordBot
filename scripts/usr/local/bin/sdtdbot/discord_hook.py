@@ -4,7 +4,7 @@ import os, time
 from lxml import etree
 from Webhook.Webhook import Sdtdhook
 
-webhook_url = 'https://discordapp.com/api/webhooks/id/token'
+webhook_url = 'https://discordapp.com/api/webhooks/432666499262709760/BiGodVnY1jXI4TJTEB1zP696W-wOxkCWiBL8wGfUW7hRtMfvB1euxe_UdD7sWGsmnB3u'
 webhook_server_ip = '127.0.0.1'
     
 if __name__ == '__main__':
@@ -15,7 +15,7 @@ if __name__ == '__main__':
             for instance in os.listdir(instancesDir):
                 instanceConf = '{}/{}/config.xml'.format(instancesDir, instance)
                 if os.path.exists(instanceConf) == True:
-                    doc = etree.parse()
+                    doc = etree.parse(instanceConf)
                     root = doc.getroot()
                     for child in root:
                         if child.attrib['name'] == 'ServerName':

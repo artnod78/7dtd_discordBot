@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
+import asyncio
 from discord.ext import commands
 from subprocess import Popen, PIPE
 
@@ -9,6 +10,7 @@ bot_admin_list = ('355484130722709506',)
 
 
 bot = commands.Bot(command_prefix='/', description='A simple Bot to start/stop 7dtd server')
+
 @bot.event
 async def on_ready():
     """

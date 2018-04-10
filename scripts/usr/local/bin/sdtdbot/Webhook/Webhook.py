@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+#-*- coding: utf-8 -*-
 '''
 Created on 10 avr. 2018
 
