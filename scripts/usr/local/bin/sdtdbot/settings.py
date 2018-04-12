@@ -13,10 +13,10 @@ BOT_CONF = {
 }
 
 WEBHOOK_CONF = {
-    'webhook_url' : 'https://discordapp.com/api/webhooks/383610128349265934/GF4Jb_WXpGnMtYi29Vz7Z8-y5LoXbIbE3BuM4Lw5vrHoTBmj0elvmD7hvmz5B7X0vZFw',
+    'webhook_url' : 'https://discordapp.com/api/webhooks/432666499262709760/BiGodVnY1jXI4TJTEB1zP696W-wOxkCWiBL8wGfUW7hRtMfvB1euxe_UdD7sWGsmnB3u',
     'message' : {
-        'author' : 'Norbert le Robot',
-        'author_icon' : 'http://www.emoji.co.uk/files/apple-emojis/smileys-people-ios/78-robot-face.png',
+        'author' : 'Toto Le Robot',
+        'author_icon' : 'https://discordapp.com/assets/6debd47ed13483642cf09e832ed0bc1b.png',
         'thumbnail_on' : 'https://i.pinimg.com/originals/23/4a/6b/234a6b9a897c7e963bf73ef073b94842.jpg',
         'thumbnail_off' : 'http://www.clker.com/cliparts/4/4/1/a/1195429270821624493molumen_multicolor_power_buttons_4.svg.hi.png',
         'footer' : 'http://www.4forcesclan.com/images/7dlogo.png',
@@ -28,7 +28,7 @@ SDTD_CONF = {
 }
 
 LOG_CONF = {
-    'log_dir' : '/var/log/',
+    'log_dir' : '/var/log',
     'max_bytes' : 5000000,
     'backup_count' : 5,
 }

@@ -173,7 +173,6 @@ class Sdtdhook:
         Check if Port is open
         """
         self.logger.debug(sys._getframe().f_code.co_name)
-        self.running = False
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         result = sock.connect_ex((self.hostname, self.port))
         if result == 0:
@@ -181,6 +180,7 @@ class Sdtdhook:
                 self.running = True
         else:
             self.logger.debug('Check instance on {}:{} - Failed'.format(self.hostname, self.port))
+            self.running = False
     
     def sendState(self):
         """
@@ -188,18 +188,17 @@ class Sdtdhook:
         """
         self.logger.debug(sys._getframe().f_code.co_name)
         embed = Webhook(self.webhook_url, color=123123)
+        embed.set_author(name=WEBHOOK_CONF['message']['author'], icon=WEBHOOK_CONF['message']['author_icon'])
         if self.running == True:
-            self.logger.info('{}:{} is now available'.format(self.hostname, self.port))
-            embed.set_author(name=WEBHOOK_CONF['message']['author'], icon=WEBHOOK_CONF['message']['author_icon'])
-            embed.set_desc('{}:{} is now available!'.format(self.hostname, self.port))
+            self.logger.info('{}:{} is available'.format(self.hostname, self.port))
+            embed.set_desc('{} is available!'.format(self.servername))
             embed.add_field(name='Hostname',value=self.hostname)
             embed.add_field(name='Port',value=self.port)
             embed.set_thumbnail(WEBHOOK_CONF['message']['thumbnail_on'])
             embed.set_footer(text='Good Game',icon=WEBHOOK_CONF['message']['footer'],ts=True)
         else:
-            self.logger.info('{}:{} is now unavailable'.format(self.hostname, self.port))
-            embed.set_author(name=WEBHOOK_CONF['message']['author'], icon=WEBHOOK_CONF['message']['author_icon'])
-            embed.set_desc('{}:{} is now unavailable'.format(self.hostname, self.port))
+            self.logger.info('{}:{} is unavailable'.format(self.hostname, self.port))
+            embed.set_desc('{} is unavailable!'.format(self.servername))
             embed.set_thumbnail(WEBHOOK_CONF['message']['thumbnail_off'])
             embed.set_footer(text='See you later',icon=WEBHOOK_CONF['message']['footer'],ts=True)
         embed.post()

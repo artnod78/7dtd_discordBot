@@ -5,31 +5,15 @@ Created on 10 avr. 2018
 
 @author: artnod
 '''
-import sys, asyncio, logging, logging.handlers
-from discord.ext import commands
+import sys, asyncio
 from subprocess import Popen, PIPE
-from settings import BOT_CONF, LOG_CONF
+from discord.ext import commands
+from BotLog.Botlog import getBotLogger
+from settings import BOT_CONF
+
 
 # Set up a specific logger with our desired output level
-my_logger = logging.getLogger('discord_bot')
-my_logger.setLevel(logging.DEBUG)
-# create file handler which logs even debug messages
-fhandler = logging.handlers.RotatingFileHandler(
-    '{}discord_bot.log'.format(LOG_CONF['log_dir']), 
-    maxBytes = LOG_CONF['max_bytes'], 
-    backupCount = LOG_CONF['backup_count']
-)
-fhandler.setLevel(logging.INFO)
-# create console handler with a higher log level
-chandler = logging.StreamHandler()
-chandler.setLevel(logging.DEBUG)
-# create formatter and add it to the handler
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-fhandler.setFormatter(formatter)
-chandler.setFormatter(formatter)
-# add the handler to logger
-my_logger.addHandler(fhandler)
-my_logger.addHandler(chandler)
+my_logger = getBotLogger('discord_bot')
 
 
 bot = commands.Bot(command_prefix='/', description='A simple Bot to start/stop 7dtd server')
@@ -81,7 +65,7 @@ async def sdtd(ctx):
             await bot.say('**{0.name}** try to start ** 7dtd server**!\r'.format(member))
             try:
                 my_logger.info('{0.name} try to start 7dtd server'.format(member))
-				p = Popen(["/usr/local/bin/7dtd.sh", "start", "!"], stdout=PIPE)
+                p = Popen(["/usr/local/bin/7dtd.sh", "start", "!"], stdout=PIPE)
                 toto = p.communicate()
                 if toto[0] != None:
                     await bot.say(toto[0].decode('unicode_escape'))
@@ -91,10 +75,10 @@ async def sdtd(ctx):
                 my_logger.err('Command Failed')
                 await bot.say('Command Failed!')
         else:
-			my_logger.warn('{0.name} Access Denied'.format(member))
+            my_logger.warn('{0.name} Access Denied'.format(member))
             await bot.say('**{0.name}** ! Access Denied!\r'.format(member))
     else:
-		my_logger.warn('{0.name} Bad channel'.format(member))
+        my_logger.warn('{0.name} Bad channel'.format(member))
         await bot.say('**{0.name}** ! Bad channel!\r'.format(member))
 
 @stop.command(pass_context=True)
@@ -122,11 +106,11 @@ async def sdtd(ctx):
                 my_logger.err('Command Failed')
                 await bot.say('Command Failed!')
         else:
-			my_logger.warn('{0.name} Access Denied'.format(member))
+            my_logger.warn('{0.name} Access Denied'.format(member))
             await bot.say('**{0.name}** ! Access Denied!\r'.format(member))
             
     else:
-		my_logger.warn('{0.name} Bad channel'.format(member))
+        my_logger.warn('{0.name} Bad channel'.format(member))
         await bot.say('**{0.name}** ! Bad channel!\r'.format(member))
 
 if __name__ == '__main__':
