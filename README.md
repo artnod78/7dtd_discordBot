@@ -14,21 +14,29 @@ chmod +x bootstrap.sh
 ./bootstrap.sh -i
 ```
 ## Config
-Edit `/usr/local/bin/sdtdbot/discord_bot.py` with your settings:
+Edit `/usr/local/bin/sdtdbot/settings.py` with your settings:
 ```
-bot_token = '<token>'
-bot_channel = '<channel>'
-bot_admin_list = ('<user>',)
+BOT_CONF = {
+    'bot_token' : '<token>',
+    'bot_channel' : '<channel>',
+    'bot_admin_list' : ('<user>',),
+}
 ```
 Replace **\<token>** by bot token  
 Replace **\<channel>** by a channel using by bot  
 Replace **\<user>** by id from allowed users. Can add many users `('<user_1_ID>', '<user_2_ID>')`  
- 
- 
- Edit `/usr/local/bin/sdtdbot/discord_hook.py` with your settings:
+
 ```
-webhook_url = '<webhook_url>'
-webhook_server_ip = '<@IP or hostname>'
+WEBHOOK_CONF = {
+    'webhook_url' : '<webhook_url>',
+}
 ```
 Replace **\<webhook_url>** by webhook url  
-Replace **\<@IP or hostname>** by 7dtd server public IP addresse or hostname (Ex: **8.8.8.8** or **sdtd.domain.tld**)
+Replace **\<@IP or hostname>** by 7dtd server public IP addresse or hostname (Ex: **8.8.8.8** or **sdtd.domain.tld**)  
+
+```
+SDTD_CONF = {
+    'server_ip' : '<@IP or hostname>',
+}
+```
+Replace **\<@IP or hostname>** by 7dtd server public IP addresse or hostname (Ex: **8.8.8.8** or **sdtd.domain.tld**)  
