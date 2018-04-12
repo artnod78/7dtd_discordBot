@@ -4,8 +4,6 @@ Required 7dtd Linux management scripts available on https://7dtd.illy.bz/
 Features:
   * Start/Stop 7dtd instances. ( Discord Bot )
   * Send message when instances' state changed. ( Discord WebHook )
-  * Run as sysV daemon
-  * Log events
 
 This wiki will guide you to get settings:  
 [wiki](https://github.com/artnod78/7dtd_discordBot/wiki)  
