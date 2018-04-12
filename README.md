@@ -15,6 +15,7 @@ chmod +x bootstrap.sh
 ```
 ## Config
 Edit `/usr/local/bin/sdtdbot/settings.py` with your settings:
+### Bot Config
 ```
 BOT_CONF = {
     'bot_token' : '<token>',
@@ -25,7 +26,7 @@ BOT_CONF = {
 Replace **\<token>** by bot token  
 Replace **\<channel>** by a channel using by bot  
 Replace **\<user>** by id from allowed users. Can add many users `('<user_1_ID>', '<user_2_ID>')`  
-  
+### Hook Config  
 ```
 WEBHOOK_CONF = {
     'webhook_url' : '<webhook_url>',
@@ -33,7 +34,7 @@ WEBHOOK_CONF = {
 ```
 Replace **\<webhook_url>** by webhook url  
 Replace **\<@IP or hostname>** by 7dtd server public IP addresse or hostname (Ex: **8.8.8.8** or **sdtd.domain.tld**)  
-  
+### 7dtd Config  
 ```
 SDTD_CONF = {
     'server_ip' : '<@IP or hostname>',
