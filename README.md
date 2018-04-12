@@ -14,7 +14,7 @@ chmod +x bootstrap.sh
 ./bootstrap.sh -i
 ```
 ## Config
-Edit `/usr/local/bin/sdtdbot/settings.py` with your settings
+Edit `/usr/local/bin/sdtdbot/settings.py` with your settings.
 
 ### Bot Config
 ```
