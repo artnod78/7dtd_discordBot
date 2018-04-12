@@ -8,7 +8,6 @@ Created on 10 avr. 2018
 import os, time, logging, logging.handlers
 from lxml import etree
 from Webhook.Webhook import Sdtdhook
-from BotLog.Botlog import getBotLogger
 from settings import WEBHOOK_CONF, SDTD_CONF, LOG_CONF
 
 # Set up a specific logger with our desired output level
