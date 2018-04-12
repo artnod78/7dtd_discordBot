@@ -5,9 +5,8 @@ Created on 10 avr. 2018
 
 @author: artnod
 '''
-import sys, datetime, time, json, requests, socket
+import sys, datetime, time, json, requests, socket, logging
 from collections import defaultdict
-import logging
 from settings import WEBHOOK_CONF
 
 class Webhook:
