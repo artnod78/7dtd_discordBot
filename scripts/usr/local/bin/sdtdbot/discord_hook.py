@@ -11,11 +11,11 @@ from Webhook.Webhook import Sdtdhook
 from settings import WEBHOOK_CONF, SDTD_CONF, LOG_CONF
 
 # Set up a specific logger with our desired output level
-my_logger = logging.getLogger('discord_bot')
+my_logger = logging.getLogger('discord_hook')
 my_logger.setLevel(logging.DEBUG)
 # create file handler which logs even debug messages
 fhandler = logging.handlers.RotatingFileHandler(
-    '{}discord_bot.log'.format(LOG_CONF['log_dir']), 
+    '{}discord_hook.log'.format(LOG_CONF['log_dir']), 
     maxBytes = LOG_CONF['max_bytes'], 
     backupCount = LOG_CONF['backup_count']
 )
