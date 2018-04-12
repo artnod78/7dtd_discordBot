@@ -1,20 +1,24 @@
 # 7dtd_discordBot
 Simple Bot/Webhook for 7dtd Linux management scripts.  
-Required 7dtd Linux management scripts availible on https://7dtd.illy.bz/  
+Required 7dtd Linux management scripts available on https://7dtd.illy.bz/  
 Features:
   * Start/Stop 7dtd instances. ( Discord Bot )
-  * Send message when instances' state changed. ( Discord WebHook )  
+  * Send message when instances' state changed. ( Discord WebHook )
+  * Run as sysV daemon
+  * Log events
 
-This wiki will guide you through the setup and usage of the tool set.  
-[wiki](https://github.com/artnod78/7dtd_discordBot/wiki)
+This wiki will guide you to get settings:  
+[wiki](https://github.com/artnod78/7dtd_discordBot/wiki)  
+
 ## Install
 ```
 wget https://raw.githubusercontent.com/artnod78/7dtd_discordBot/master/bootstrap/bootstrap.sh
 chmod +x bootstrap.sh
 ./bootstrap.sh -i
-```
+```  
+
 ## Config
-Edit `/usr/local/bin/sdtdbot/settings.py` with your settings.
+Edit `/usr/local/bin/sdtdbot/settings.py` with your settings.  
 
 ### Bot Config
 ```
