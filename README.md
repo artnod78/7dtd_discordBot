@@ -25,7 +25,7 @@ BOT_CONF = {
 Replace **\<token>** by bot token  
 Replace **\<channel>** by a channel using by bot  
 Replace **\<user>** by id from allowed users. Can add many users `('<user_1_ID>', '<user_2_ID>')`  
-
+  
 ```
 WEBHOOK_CONF = {
     'webhook_url' : '<webhook_url>',
@@ -33,7 +33,7 @@ WEBHOOK_CONF = {
 ```
 Replace **\<webhook_url>** by webhook url  
 Replace **\<@IP or hostname>** by 7dtd server public IP addresse or hostname (Ex: **8.8.8.8** or **sdtd.domain.tld**)  
-
+  
 ```
 SDTD_CONF = {
     'server_ip' : '<@IP or hostname>',
