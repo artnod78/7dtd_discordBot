@@ -5,16 +5,18 @@ Created on 10 avr. 2018
 
 @author: artnod
 '''
-import datetime, requests, json, time , socket
+import sys, datetime, time, json, requests, socket
 from collections import defaultdict
+import logging
+from settings import WEBHOOK_CONF
 
 class Webhook:
     def __init__(self, url, **kwargs):
-        
         """
         Initialise a Webhook Embed Object
         """
-        
+        self.logger = logging.getLogger('discord_hook.Webhook')
+        self.logger.debug('Init a Webhook object')
         self.url = url 
         self.msg = kwargs.get('msg')
         self.color = kwargs.get('color')
@@ -34,7 +36,8 @@ class Webhook:
     def add_field(self,**kwargs):
         '''
         Adds a field to `self.fields`
-        '''        
+        '''
+        self.logger.debug(sys._getframe().f_code.co_name)  
         name = kwargs.get('name')
         value = kwargs.get('value')
         inline = kwargs.get('inline', True)
@@ -48,13 +51,15 @@ class Webhook:
     def set_desc(self,desc):
         '''
         Set description
-        '''        
+        '''
+        self.logger.debug(sys._getframe().f_code.co_name)   
         self.desc = desc
     
     def set_author(self, **kwargs):
         '''
         Set author
-        '''        
+        '''
+        self.logger.debug(sys._getframe().f_code.co_name)    
         self.author = kwargs.get('name')
         self.author_icon = kwargs.get('icon')
         self.author_url = kwargs.get('url')
@@ -62,27 +67,30 @@ class Webhook:
     def set_title(self, **kwargs):
         '''
         Set title
-        '''        
+        '''
+        self.logger.debug(sys._getframe().f_code.co_name)  
         self.title = kwargs.get('title')
         self.title_url = kwargs.get('url')
     
     def set_thumbnail(self, url):
         '''
         Set thumbnail
-        '''        
+        '''
+        self.logger.debug(sys._getframe().f_code.co_name)  
         self.thumbnail = url
     
     def set_image(self, url):
         '''
         Set image
-        '''        
+        '''
+        self.logger.debug(sys._getframe().f_code.co_name)   
         self.image = url
     
     def set_footer(self,**kwargs):
         '''
         Set footer
         '''
-        
+        self.logger.debug(sys._getframe().f_code.co_name)  
         self.footer = kwargs.get('text')
         self.footer_icon = kwargs.get('icon')
         ts = kwargs.get('ts')
@@ -94,7 +102,8 @@ class Webhook:
     def del_field(self, index):
         '''
         Delete field
-        '''        
+        '''
+        self.logger.debug(sys._getframe().f_code.co_name)  
         self.fields.pop(index)
     
     @property
@@ -102,6 +111,7 @@ class Webhook:
         '''
         Formats the data into a payload
         '''
+        self.logger.debug(sys._getframe().f_code.co_name)  
         data = {}
         data["embeds"] = []
         embed = defaultdict(dict)
@@ -137,20 +147,21 @@ class Webhook:
         """
         Send the JSON formated object to the specified `self.url`.
         """
+        self.logger.debug(sys._getframe().f_code.co_name)  
         headers = {'Content-Type': 'application/json'}
         result = requests.post(self.url, data=self.json, headers=headers)
         if result.status_code == 400:
-            print("Post Failed, Error 400")
+            self.logger.err("Post Failed, Error 400")
         else:
-            print("Payload delivered successfuly")
-            print("Code : "+str(result.status_code))
-            time.sleep(2)
+            self.logger.info("Payload delivered successfuly - Code : "+str(result.status_code))
 
 class Sdtdhook:
     def __init__(self, hostname, port, servername, webhook_url):
         """
         Initialise a sdtdInstance Webhook
         """
+        self.logger = logging.getLogger('discord_hook.Sdtdhook')
+        self.logger.debug('Init a Sdtdhook object')
         self.hostname = hostname
         self.port = port
         self.servername = servername
@@ -161,32 +172,36 @@ class Sdtdhook:
         """
         Check if Port is open
         """
+        self.logger.debug(sys._getframe().f_code.co_name)
         self.running = False
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         result = sock.connect_ex((self.hostname, self.port))
         if result == 0:
+                self.logger.debug('Check instance on {}:{} - Success'.format(self.hostname, self.port))
                 self.running = True
+        else:
+            self.logger.debug('Check instance on {}:{} - Failed'.format(self.hostname, self.port))
     
     def sendState(self):
         """
         Send instance state
         """
-        status = ''
+        self.logger.debug(sys._getframe().f_code.co_name)
         embed = Webhook(self.webhook_url, color=123123)
         if self.running == True:
-            status = 'disponible'
-            embed.set_author(name='Norbert le Robot', icon='http://www.emoji.co.uk/files/apple-emojis/smileys-people-ios/78-robot-face.png')
-            embed.set_desc('Le serveur **' + self.servername + '** est ' + status + '!')
+            self.logger.info('{}:{} is now available'.format(self.hostname, self.port))
+            embed.set_author(name=WEBHOOK_CONF['message']['author'], icon=WEBHOOK_CONF['message']['author_icon'])
+            embed.set_desc('{}:{} is now available!'.format(self.hostname, self.port))
             embed.add_field(name='Hostname',value=self.hostname)
             embed.add_field(name='Port',value=self.port)
-            embed.set_thumbnail('https://i.pinimg.com/originals/23/4a/6b/234a6b9a897c7e963bf73ef073b94842.jpg')
-            embed.set_footer(text='Bon jeu',icon='http://www.4forcesclan.com/images/7dlogo.png',ts=True)
+            embed.set_thumbnail(WEBHOOK_CONF['message']['thumbnail_on'])
+            embed.set_footer(text='Good Game',icon=WEBHOOK_CONF['message']['footer'],ts=True)
         else:
-            status = 'eteins'
-            embed.set_author(name='Norbert le Robot', icon='http://www.emoji.co.uk/files/apple-emojis/smileys-people-ios/78-robot-face.png')
-            embed.set_desc('Le serveur **' + self.servername + '** est ' + status + '!')
-            embed.set_thumbnail('http://www.clker.com/cliparts/4/4/1/a/1195429270821624493molumen_multicolor_power_buttons_4.svg.hi.png')
-            embed.set_footer(text='A bientot',icon='http://www.4forcesclan.com/images/7dlogo.png',ts=True)
+            self.logger.info('{}:{} is now unavailable'.format(self.hostname, self.port))
+            embed.set_author(name=WEBHOOK_CONF['message']['author'], icon=WEBHOOK_CONF['message']['author_icon'])
+            embed.set_desc('{}:{} is now unavailable'.format(self.hostname, self.port))
+            embed.set_thumbnail(WEBHOOK_CONF['message']['thumbnail_off'])
+            embed.set_footer(text='See you later',icon=WEBHOOK_CONF['message']['footer'],ts=True)
         embed.post()
     
     def process(self):
@@ -194,7 +209,9 @@ class Sdtdhook:
         If instance status change
         Then send instance new state
         """
+        self.logger.debug(sys._getframe().f_code.co_name)  
         self.isRunning()
         if self.running != self.lastState:
             self.sendState()
             self.lastState = self.running
+        
