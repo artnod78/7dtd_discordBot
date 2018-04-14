@@ -7,13 +7,13 @@ Created on 12 avr. 2018
 '''
 
 BOT_CONF = {
-    'bot_token' : 'Mzg1MDUwMDUyNTI5MjI1NzM4.DP7u-g.1OUU_lPMexdNSM81VXWqinUGTvE',
-    'bot_channel' : '385778052317315084',
-    'bot_admin_list' : ('355484130722709506',),
+    'bot_token' : '<token>',
+    'bot_channel' : '<channel>',
+    'bot_admin_list' : ('<user>',),
 }
 
 WEBHOOK_CONF = {
-    'webhook_url' : 'https://discordapp.com/api/webhooks/432666499262709760/BiGodVnY1jXI4TJTEB1zP696W-wOxkCWiBL8wGfUW7hRtMfvB1euxe_UdD7sWGsmnB3u',
+    'webhook_url' : '<webhook_url>',
     'message' : {
         'author' : 'Toto Le Robot',
         'author_icon' : 'https://discordapp.com/assets/6debd47ed13483642cf09e832ed0bc1b.png',
