@@ -1,6 +1,6 @@
 # 7dtd_discordBot
-Simple Bot and Webhook for 7dtd Linux management scripts.  
-Required 7dtd Linux management scripts available on https://7dtd.illy.bz/  
+Simple Discord Bot/Webhook for 7dtd Linux management scripts.  
+**Required** 7dtd Linux management scripts, available on https://7dtd.illy.bz/  
 Features:
   * Start/Stop 7dtd instances. ( Discord Bot )
   * Send message when instances' state changed. ( Discord WebHook )
