@@ -7,6 +7,7 @@ Features:
 
 This wiki will guide you to get settings:  
 [wiki](https://github.com/artnod78/7dtd_discordBot/wiki)  
+For suggest or help, go on discord:
 [discord](https://discord.gg/dszbz)  
 ## Install
 ```
