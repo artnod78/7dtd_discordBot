@@ -46,4 +46,4 @@ SDTD_CONF = {
     'server_ip' : '<@IP or hostname>',
 }
 ```
-Replace **\<@IP or hostname>** by 7dtd server public IP addresse or hostname (Ex: **8.8.8.8** or **sdtd.domain.tld**)  
+Replace **\<@IP or hostname>** by 7dtd server public IP address or hostname (Ex: **8.8.8.8** or **sdtd.domain.tld**)  
